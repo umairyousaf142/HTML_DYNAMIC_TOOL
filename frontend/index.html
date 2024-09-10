@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonial Readiness Assessment - Physicians</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section class="assessment-container">
+    <h1 class="assessment-title">Testimonial Readiness Assessment - Physicians</h1>
+    <p class="assessment-instructions"><strong>Instructions:</strong> Please indicate how strongly you agree or disagree with each of the following statements.</p>
+  </section>
+
+  <div class="trapForm">
+    <form id="assessmentForm">
+    </form>
+
+    <!-- <button type="button" onclick="calculateScore()">Submit</button>
+    <button type="button" onclick="generatePDF()">Generate PDF</button> -->
+    <button id="submitButton" type="button">Submit</button>
+<button id="generatePDFButton" type="button">Generate PDF</button>
+
+
+  </div>
+
+  <section class="feedback-container">
+    <p class="score">On a scale from 0 to 10, <span id="score"></span></p>
+
+    <div class="feedback">
+      <p><strong>Strengths:</strong></p>
+      <p id="strengths"></p>
+      <p><strong>Weaknesses:</strong></p>
+      <p id="weaknesses"></p>
+    </div>
+  </section>
+
+  <section class="spinner-container" id="spinner">
+    <div class="spinner" id="spinner">
+
+      <div></div>
+    </div>
+  </section>
+
+  <section class="chart-container">
+    <div class="bar-chart" id="barChart">
+      <div class="axis top">
+        <span class="left-span" >-100</span><span class="left-span" >-75</span ><span class="left-span" >-50</span><span class="left-span" >-25</span><span class="center-span" style="width: 0;" >0</span><span class="right-span">25</span><span class="right-span" >50</span><span class="right-span">75</span><span class="right-span">100</span>
+      </div>
+
+      <div class="axis bottom">
+        <span class="left-span" >-100</span><span class="left-span" >-75</span ><span class="left-span" >-50</span><span class="left-span" >-25</span><span class="center-span" style="width: 0;" >0</span><span class="right-span">25</span><span class="right-span" >50</span><span class="right-span">75</span><span class="right-span">100</span>
+
+      </div>
+    </div>
+  </section>
+  <script type="module" src="./script.js"> </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+ 
+</body>
+
+</html>
