@@ -9,6 +9,15 @@ let ratingText = {
     "6": "Agree",
     "7": "Strongly Agree"
   };
+let AnswerText = {
+    "1": "substantial weakness",
+    "2": "moderate weakness",
+    "3": "slight weakness",
+    "4": "neutral",
+    "5": "slight strength",
+    "6": "moderate strength",
+    "7": "substantial strength"
+  };
 let positiveQuestions = [];
 let negativeQuestions = [];
 let newData = [];
@@ -37,10 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
             query[`q${index + 1}`] = item.question;
             questions[`q${index + 1}`] = item.phrase;
         });
-
-        console.log('Positive Questions:', positiveQuestions);
-        console.log('Negative Questions:', negativeQuestions);
-
         // Populate the form with questions
         const form = document.getElementById('assessmentForm');
         newData.forEach((item, index) => {
@@ -178,15 +183,29 @@ function calculateScore() {
 
         </div>`;
         
-        Object.keys(answers).forEach(key => {
+        Object.keys(answers).forEach((key) => {
             const value = answers[key];
-            // console.log(value);
             const color = value > 0 ? 'green' : 'red';
             const width = Math.abs(value) + "%";
             const positionStyle = value > 0 ? `left: 50%; transform: translateX(0);` : `right: 50%; transform: translateX(0);`;
-            const bar = `
+            let bar =``;
+            if(value==0){
+                bar = `
+                <div>
+                <span class='spanQuerry'> (${key.split('q')[1]}) ${questions[key]} (${AnswerText[4]}) </span>
+                <div class="axis">
+                <span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span  class="vertical-line center-span" style="width: 0;"  ><div class="half-circle"></div></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span"></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span" ></span>
+            </div>
+                    <div class="bar">
+                        <div class="${color}" style="width: 0%; ${positionStyle};"></div>
+                    </div>
+                    </div>
+                `; 
+            }
+            else if (value==-99.99){
+             bar = `
             <div>
-            <span class='spanQuerry'>${questions[key]}</span>
+            <span class='spanQuerry'>(${key.split('q')[1]})  ${questions[key]} (${AnswerText[1]}) </span>
             <div class="axis">
             <span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span  class="vertical-line center-span" style="width: 0;"  ></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span"></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span" ></span>
         </div>
@@ -195,6 +214,72 @@ function calculateScore() {
                 </div>
                 </div>
             `;
+        }
+        else if (value==-66.66){
+             bar = `
+            <div>
+            <span class='spanQuerry'>(${key.split('q')[1]})  ${questions[key]} (${AnswerText[2]}) </span>
+            <div class="axis">
+            <span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span  class="vertical-line center-span" style="width: 0;"  ></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span"></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span" ></span>
+        </div>
+                <div class="bar">
+                    <div class="${color}" style="width: 0%; ${positionStyle};"></div>
+                </div>
+                </div>
+            `;
+        }
+        else if (value==-33.33){
+             bar = `
+            <div>
+            <span class='spanQuerry'>(${key.split('q')[1]})  ${questions[key]} (${AnswerText[3]}) </span>
+            <div class="axis">
+            <span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span  class="vertical-line center-span" style="width: 0;"  ></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span"></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span" ></span>
+        </div>
+                <div class="bar">
+                    <div class="${color}" style="width: 0%; ${positionStyle};"></div>
+                </div>
+                </div>
+            `;
+        }
+            else if (value==33.33){
+             bar = `
+            <div>
+            <span class='spanQuerry'>(${key.split('q')[1]})  ${questions[key]} (${AnswerText[5]}) </span>
+            <div class="axis">
+            <span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span  class="vertical-line center-span" style="width: 0;"  ></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span"></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span" ></span>
+        </div>
+                <div class="bar">
+                    <div class="${color}" style="width: 0%; ${positionStyle};"></div>
+                </div>
+                </div>
+            `;
+        }
+            else if (value==66.66){
+             bar = `
+            <div>
+            <span class='spanQuerry'>(${key.split('q')[1]})  ${questions[key]} (${AnswerText[6]}) </span>
+            <div class="axis">
+            <span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span  class="vertical-line center-span" style="width: 0;"  ></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span"></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span" ></span>
+        </div>
+                <div class="bar">
+                    <div class="${color}" style="width: 0%; ${positionStyle};"></div>
+                </div>
+                </div>
+            `;
+        }
+            else if (value==99.99){
+             bar = `
+            <div>
+            <span class='spanQuerry'>(${key.split('q')[1]})  ${questions[key]} (${AnswerText[7]}) </span>
+            <div class="axis">
+            <span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span class="vertical-line left-span" ></span><span  class="vertical-line left-span" ></span><span  class="vertical-line center-span" style="width: 0;"  ></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span"></span><span class="vertical-line right-span" ></span><span class="vertical-line right-span" ></span>
+        </div>
+                <div class="bar">
+                    <div class="${color}" style="width: 0%; ${positionStyle};"></div>
+                </div>
+                </div>
+            `;
+        }
             barChart.innerHTML += bar;
         });
         
@@ -203,9 +288,7 @@ function calculateScore() {
             const bars = document.querySelectorAll('.bar div');
             bars.forEach((bar, index) => {
                 const value = answers[Object.keys(answers)[index]];
-                console.log(value);
                 const width = (value/100)*50
-                // console.log(width);
                 bar.style.width = Math.abs(width) + "%";
             });
         
@@ -214,22 +297,168 @@ function calculateScore() {
 })       
     }
 
+
+// function generatePDF() {
+//     const { jsPDF } = window.jspdf;
+//     const doc = new jsPDF();
+//     doc.setFont("helvetica");
+
+//     // First Page: Title, Score, Identifier, and Bar Chart
+//     doc.setFontSize(16);
+//     doc.text("Testimonial Readiness Assessment - Physicians (TRA-P)", 10, 10);
+
+//     doc.setFontSize(14);
+//     const score = document.getElementById("score").innerText;
+//     doc.text("Score: " + score, 10, 20);
+
+//     doc.setFontSize(12);
+//     const Identifier = document.getElementById("identifier").value;
+//     doc.text(`The Identifier is: ${Identifier}`, 10, 30);
+
+//     // Add Bar Chart
+//     const pageWidth = doc.internal.pageSize.getWidth();
+//     const text = "Bar Chart";
+//     const textWidth = doc.getTextWidth(text);
+//     const textX = (pageWidth - textWidth) / 2;  // Centered position
+//     doc.setFontSize(14);
+//     doc.text(text, textX, 50); // Adjust Y for vertical padding/margin
+
+//     // Convert the bar chart to an image using html2canvas
+//     html2canvas(document.querySelector("#barChart")).then(canvas => {
+//         const imgData = canvas.toDataURL("image/png");
+//         const imgWidth = 180; // Adjust the width of the image
+//         const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+
+//         // Add the chart image to the PDF
+//         doc.addImage(imgData, 'PNG', 10, 60, imgWidth, imgHeight);
+
+//         // Add a new page for the query summary
+//         doc.addPage();
+//         doc.setFontSize(16);
+//         doc.text("Query Summary", 50, 10);
+
+//         // Iterate over all questions and answers
+//         doc.setFontSize(12);
+//         const startY = 20;
+//         let currentY = startY;
+//         const lineHeight = 10; // Line height for spacing between lines
+//         const pageHeight = doc.internal.pageSize.height; // Page height
+//         const margin = 10; // Margin from the bottom of the page
+
+//         newData.forEach((item, index) => {
+//             const questionNumber = index + 1;
+//             const selectedValue = document.querySelector(`input[name="q${questionNumber}"]:checked`);
+//             const answerText = selectedValue ? ratingText[selectedValue.value] : "No response";
+
+//             // Check if adding this question and answer would exceed the page height
+//             const questionTextHeight = doc.getTextDimensions(`${questionNumber}. ${item.question}`).h;
+//             const answerTextHeight = doc.getTextDimensions(`Selected Value: ${answerText}`).h;
+
+//             // If the text would overflow the page, add a new page
+//             if (currentY + questionTextHeight + answerTextHeight + lineHeight > pageHeight - margin) {
+//                 doc.addPage();
+//                 currentY = startY;
+//             }
+
+//             // Add question and selected value to the current page
+//             doc.text(`${questionNumber}. ${item.question}`, 10, currentY);
+//             currentY += lineHeight; // Move down for the answer
+//             doc.text(`Selected Value: ${answerText}`, 10, currentY);
+//             currentY += lineHeight; // Move down for the next question
+//         });
+
+//         // Save the PDF
+//         doc.save("TRA-P_Assessment.pdf");
+//     });
+// }
+
 function generatePDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
+    doc.setFont("helvetica");
 
+    // First Page: Title, Score, Identifier, and Bar Chart
+    doc.setFontSize(16);
     doc.text("Testimonial Readiness Assessment - Physicians (TRA-P)", 10, 10);
 
+    doc.setFontSize(14);
     const score = document.getElementById("score").innerText;
-    doc.text(score, 10, 20);
+    doc.text("Score: " + score, 10, 20);
 
-    const strengths = document.getElementById("strengths").innerText;
-    doc.text("Strengths:", 10, 30);
-    doc.text(strengths, 10, 40);
+    doc.setFontSize(12);
+    const Identifier = document.getElementById("identifier").value;
+    doc.text(`The Identifier is: ${Identifier}`, 10, 30);
 
-    const weaknesses = document.getElementById("weaknesses").innerText;
-    doc.text("Weaknesses:", 10, 60);
-    doc.text(weaknesses, 10, 70);
+    // Add Bar Chart
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 10; // Margin from the edges
 
-    doc.save("TRA-P_Assessment.pdf");
+    const chartTitle = "Bar Chart";
+    const textWidth = doc.getTextWidth(chartTitle);
+    const textX = (pageWidth - textWidth) / 2;  // Centered position
+    doc.setFontSize(14);
+    doc.text(chartTitle, textX, 50); // Adjust Y for vertical padding/margin
+
+    // Convert the bar chart to an image using html2canvas
+    html2canvas(document.querySelector("#chartContainer")).then(canvas => {
+        const imgData = canvas.toDataURL("image/png");
+        const imgWidth = canvas.width; // Original width of the image
+        const imgHeight = canvas.height; // Original height of the image
+
+        // Calculate scaling factor to fit the image within the page dimensions
+        const scaleX = (pageWidth - 2 * margin) / imgWidth;
+        const scaleY = (pageHeight - 70 - 2 * margin) / imgHeight; // 70 is the space taken by the title and padding above the image
+        const scale = Math.min(scaleX, scaleY);
+
+        const scaledImgWidth = imgWidth * scale;
+        const scaledImgHeight = imgHeight * scale;
+
+        // Add the chart image to the PDF
+        doc.addImage(imgData, 'PNG', 20, 60, scaledImgWidth, scaledImgHeight);
+        // Add a new page for the query summary
+        doc.addPage();
+        doc.setFontSize(16);
+        doc.text("Questions Summary", 70, 10);
+
+        // Iterate over all questions and answers
+        doc.setFontSize(12);
+        const startY = 20;
+        let currentY = startY;
+        const lineHeight = 10; // Line height for spacing between lines
+
+        newData.forEach((item, index) => {
+            const questionNumber = index + 1;
+            const selectedValue = document.querySelector(`input[name="q${questionNumber}"]:checked`);
+            const answerText = selectedValue ? ratingText[selectedValue.value] : "No response";
+
+            // Check if adding this question and answer would exceed the page height
+            const questionTextHeight = doc.getTextDimensions(`${questionNumber}. ${item.question}`).h;
+            const answerTextHeight = doc.getTextDimensions(`Selected Value: ${answerText}`).h;
+
+            // Ensure `pageHeight` is declared before use
+            if (typeof pageHeight === 'undefined') {
+                const pageHeight = doc.internal.pageSize.height; // Initialize pageHeight if it was not previously initialized
+            }
+
+            // If the text would overflow the page, add a new page
+            if (currentY + questionTextHeight + answerTextHeight + lineHeight > pageHeight - margin) {
+                doc.addPage();
+                currentY = startY;
+            }
+            // Add question and selected value to the current page
+            doc.text(`${questionNumber}. ${item.question}`, 10, currentY);
+            currentY += lineHeight; // Move down for the answer
+            doc.text(`Selected Value: ${answerText}`, 10, currentY);
+            currentY += lineHeight; // Move down for the next question
+        });
+
+        // Save the PDF
+        doc.save("TRA-P_Assessment.pdf");
+    }).catch(err => {
+        console.error("Error generating PDF:", err);
+    });
 }
+
+
+

@@ -9,6 +9,34 @@ body {
  
 }
 /* Container for the assessment */
+.identifier {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.assessment-label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.assessment-input {
+  border: none;
+  border-bottom: 2px solid black;
+  max-width:160px;
+  font-size: 16px;
+  outline: none;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.assessment-input:focus {
+  border-bottom: 2px solid blue; /* Optional for a focused state */
+}
 .assessment-container {
   background: #ffffff;
   border-radius: 10px;
@@ -413,4 +441,15 @@ button:active {
 }
 .spanQuerry{
   padding-bottom: 6px;
+}
+
+.half-circle {
+  position: relative;
+  top: 14px;
+  left: -10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #dc3545 50%, #28a745 50%);
+  z-index: 10;
 }

@@ -12,6 +12,10 @@
   <section class="assessment-container">
     <h1 class="assessment-title">Testimonial Readiness Assessment - Physicians</h1>
     <p class="assessment-instructions"><strong>Instructions:</strong> Please indicate how strongly you agree or disagree with each of the following statements.</p>
+    <div class="identifier">
+      <label for="identifier" class="assessment-label">Enter an identifier for this assessment (Provider Initials or File Number):</label>
+      <input type="text" id="identifier" name="identifier" class="assessment-input">
+    </div>
   </section>
 
   <div class="trapForm">
@@ -44,7 +48,7 @@
     </div>
   </section>
 
-  <section class="chart-container">
+  <section class="chart-container" id="chartContainer" >
     <div class="bar-chart" id="barChart">
       <div class="axis top">
         <span class="left-span" >-100</span><span class="left-span" >-75</span ><span class="left-span" >-50</span><span class="left-span" >-25</span><span class="center-span" style="width: 0;" >0</span><span class="right-span">25</span><span class="right-span" >50</span><span class="right-span">75</span><span class="right-span">100</span>
@@ -57,7 +61,7 @@
     </div>
   </section>
   <script type="module" src="./script.js"> </script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 
  
