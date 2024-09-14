@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // Fetch data from the server and populate dropdown
     fetch('http://localhost:3000/api/data')

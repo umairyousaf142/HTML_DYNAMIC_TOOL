@@ -453,3 +453,8 @@ button:active {
   background: linear-gradient(90deg, #dc3545 50%, #28a745 50%);
   z-index: 10;
 }
+
+/* PDF CSS Adjustmen */
+#feedbackBox{
+  padding: 10px;
+}
