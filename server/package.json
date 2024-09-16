@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "server1.2.js"
+    "start": "nodemon server1.2.js"
   },
   "keywords": [],
   "author": "",
