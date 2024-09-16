@@ -121,7 +121,8 @@ app.post('/add-question', async (req, res) => {
 
 // Endpoint to fetch data
 app.get('/api/data', (req, res) => {
-    res.json(newData);
+    // res.json(newData);
+    res.end("this one ")
 });
 
 // Error handling middleware
