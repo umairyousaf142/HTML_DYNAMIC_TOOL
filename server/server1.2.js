@@ -5,7 +5,8 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-const PORT=3000;
+
+// Load environment variables
 dotenv.config();
 
 // Create __filename and __dirname
@@ -25,8 +26,9 @@ try {
 }
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000; // Provide a default port if not defined
 
+// Middleware setup
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST'],
@@ -34,7 +36,9 @@ app.use(cors({
 }));
 
 app.use(bodyParser.json());
-app.use(express.static('public'));
+
+// Serve static files from the public folder
+app.use(express.static(path.join(__dirname, 'inde')));
 
 // Helper function to save the updated newData to file
 const saveNewDataToFile = async (updatedData) => {
@@ -47,7 +51,9 @@ const saveNewDataToFile = async (updatedData) => {
         throw new Error('Error updating data');
     }
 };
-
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 // Endpoint to update query data
 app.post('/update-data', async (req, res) => {
     const { updatedQuestions } = req.body;
@@ -118,6 +124,12 @@ app.get('/api/data', (req, res) => {
     res.json(newData);
 });
 
-app.listen(PORT , () => {
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+});
+
+app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

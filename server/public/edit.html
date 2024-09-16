@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Editor</title>
+    <link rel="stylesheet" href="edit.css">
+</head>
+<body>
+    <div class="parent">
+
+  
+    <div class="container-edit-question">
+        <h1>Question Editor</h1>
+        <select id="questionDropdown">
+            <option value="">Select a question</option>
+        </select>
+        <input type="text" id="questionInput" placeholder="Edit question here">
+        <input type="text" id="phraseInput" placeholder="Edit phrase here"> <!-- Added phrase input -->
+        <select id="isPositiveInput"> <!-- Added isPositive dropdown -->
+            <option value="true">Direct Corelation</option>
+            <option value="false">Inverse Corelation</option>
+        </select>
+        <button id="saveButton">Save</button>
+
+        <a href="/frontend/index.html" class="back-button">Back to Home</a>
+    </div>
+    <!-- New Question Code -->
+    <div class="container-add-question">
+        <h2>Add New Question</h2>
+        <form id="add-question-form">
+            <label for="newQuestion">New Question:</label>
+            <input type="text" id="newQuestion" name="newQuestion" required placeholder="Enter the question text">
+
+            <label for="newPhrase">New Phrase:</label>
+            <input id="newPhrase" name="newPhrase" required type="text" placeholder="Enter the phrase text"/>
+
+            <label for="isPositive">Question Type:</label>
+            <select id="isPositive" name="isPositive" required>
+                <option value="true">Direct Corelation</option>
+                <option value="false">Inverse Corelation</option>
+            </select>
+
+            <label for="index">Index:</label>
+            <input type="number" id="index" name="index" required min="0" placeholder="Enter index where question should be added">
+
+            <button type="submit">Add Question</button>
+            <a href="/frontend/index.html" class="back-button">Back to Home</a>
+        </form>
+        <p id="responseMessage"></p>
+    </div>
+</div>
+    <script src="edit.js"></script>
+</body>
+</html>
