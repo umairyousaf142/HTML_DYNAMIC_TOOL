@@ -120,9 +120,19 @@ app.post('/add-question', async (req, res) => {
 });
 
 // Endpoint to fetch data
+// app.get('/api/data', (req, res) => {
+//     // res.json(newData);
+//     res.end("this one ")
+// });
 app.get('/api/data', (req, res) => {
-    // res.json(newData);
-    res.end("this one ")
+    const sampleData = {
+        id: 1,
+        name: 'Sample Item',
+        description: 'This is a sample item.',
+        available: true
+    };
+
+    res.json(sampleData);
 });
 
 // Error handling middleware
