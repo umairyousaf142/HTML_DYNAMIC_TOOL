@@ -5,7 +5,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-
+const PORT=3000;
 dotenv.config();
 
 // Create __filename and __dirname
@@ -118,6 +118,6 @@ app.get('/api/data', (req, res) => {
     res.json(newData);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT , () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
